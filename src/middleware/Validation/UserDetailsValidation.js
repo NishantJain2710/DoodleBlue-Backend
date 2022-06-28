@@ -8,7 +8,18 @@ const UserDetailsValidation = (type) => {
                 .isNumeric()
                 .withMessage('Invaid distance')
         ];
-    }else {
+    }else if(type === 'searchByGeo') {
+        return [
+            param('lon')
+                .notEmpty()
+                .isNumeric()
+                .withMessage('Invaid Longitude'),
+            param('lat')
+                .notEmpty()
+                .isNumeric()
+                .withMessage('Invaid Latitude')
+        ]
+    }else{
         return [
 
         ]

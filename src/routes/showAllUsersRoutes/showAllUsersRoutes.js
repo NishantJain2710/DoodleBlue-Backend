@@ -4,6 +4,7 @@ import express from 'express';
 import ShowAllUsersController from '../../controllers/ShowUsers/ShowAllUsers.js';
 import GetUserDetails from '../../controllers/ShowUsers/GetUserDetails.js';
 import GetListOfNearByUsersController from '../../controllers/ShowUsers/GetListOfNearByUsers.js';
+import SearchUsersByGeoCoordinates from '../../controllers/ShowUsers/SearchUsersByGeoCoordinates.js';
 
 //middleware
 import { isAuthentication } from '../../middleware/auth/authentication.js';
@@ -28,6 +29,13 @@ router.get(
     isAuthentication,
     UserDetailsValidation('showNearByUsers'),
     GetListOfNearByUsersController
+)
+
+router.get(
+    '/lon/:lon/lat/:lat',
+    isAuthentication,
+    UserDetailsValidation('searchByGeo'),
+    SearchUsersByGeoCoordinates
 )
 
 export default { router };
