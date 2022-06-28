@@ -2,7 +2,7 @@ import { validationResult } from 'express-validator';
 
 const validationErrorUtils = (req, message) => {
     const valiErrors = validationResult(req);
-
+    console.log(valiErrors)
     if(!valiErrors.isEmpty()){
         const customError = [];
 

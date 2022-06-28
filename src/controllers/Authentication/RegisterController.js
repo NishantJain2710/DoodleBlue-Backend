@@ -13,6 +13,29 @@ const RegisterController = async(req, res) => {
         }
 
         const { username, password, place, latitude, longitude } = req.body;
+
+        if(!(-90 <= latitude && 90 >= latitude)){
+            res.status(400).json([
+                {
+                    message:'latitude shoulb be in the range -90 to +90',
+                    location:'./controllers/Authentication/RegisterController.js',
+                    errorType:'User Found'
+                }
+            ])
+            return;
+        }
+
+        if(!(-180 <= longitude && 180 >= longitude)){
+            res.status(400).json([
+                {
+                    message:'longitude shoulb be in the range -180 to +180',
+                    location:'./controllers/Authentication/RegisterController.js',
+                    errorType:'User Found'
+                }
+            ])
+            return;
+        }
+
         const isUserExist = await UserDetails.findOne({ username });
 
         if(isUserExist){
